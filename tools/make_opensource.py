@@ -6,7 +6,7 @@
 2. 注入 license_manager 开源桩：原版授权/试用模块整体移除，无任何授权检查
 3. _show_help / _show_about 文案去除销售联系方式（README 承诺）
 """
-import os, shutil, sys
+import os, re, shutil, sys
 
 sys.path.insert(0, '/zocde/wp2shp2_work')
 import assemble
@@ -38,9 +38,12 @@ class _LicenseStub:
 license_manager = _LicenseStub()
 """
     text = text.replace("warnings.filterwarnings('ignore')\n", stub, 1)
-    # 3) 文案清理
-    text = text.replace("\\n\\n购买授权请联系微信: yingli100", "\\n\\n本软件为免费开放版，可自由使用与分发。")
-    text = text.replace('技术支持微信: yingli100', '免费开放版 · 可自由使用与分发')
+    # 3) 文案清理：把原版销售/联系方式文案替换为免费开放文案
+    #    （不在此处出现具体联系方式字样，避免公开仓库泄露原版作者信息）
+    text = re.sub(r'\\n\\n购买授权请联系微信: \S+',
+                  '\\n\\n本软件为免费开放版，可自由使用与分发。', text)
+    text = re.sub(r'技术支持微信: \S+', '免费开放版 · 可自由使用与分发', text)
+    text = re.sub(r'\\n微信: \S+', '', text)
     return text
 
 def main():

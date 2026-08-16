@@ -364,7 +364,7 @@ class MapGISProConverterApp:
             return False
         self._refresh_auth_status()
         if self.level == 'Trial' and self.trial_count >= license_manager.TRIAL_LIMIT:
-            messagebox.showwarning('额度用尽', '试用次数已用完。\n请联系卖家购买正式版。\n微信: yingli100')
+            messagebox.showwarning('额度用尽', '试用次数已用完。\n请联系卖家购买正式版。')
             return False
         if self.level in ('Trial', 'Personal') and self.fmt_var.get() != 'ESRI Shapefile':
             messagebox.showwarning('权限不足', f'当前【{self.level}】版本仅支持 SHP 格式。\n请联系卖家升级专业版。')
