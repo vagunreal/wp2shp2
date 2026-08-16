@@ -9,7 +9,7 @@
 - 局部变量按槽位编号归一（去掉 __assert_armored__ 占位）
 - 元组常量：新采集记录有真值全比对；旧记录按通配
 """
-import json, re, sys, types, opcode, dis
+import json, os, re, sys, types, opcode, dis
 
 # ---- 从 verify_partC.py 复制核心实现 ----
 def conv_const(c):
@@ -287,8 +287,8 @@ def build_class_src(partb_path):
             + '\n'.join(gm_lines[1:]) + '\n')
 
 def main():
-    partb = sys.argv[1] if len(sys.argv) > 1 else '/zocde/wp2shp2_work/recon/partB.py'
-    store = json.load(open('/zocde/wp2shp2_work/all_functions_merged.json', encoding='utf-8'))
+    partb = sys.argv[1] if len(sys.argv) > 1 else os.path.join('recon', 'partB.py')
+    store = json.load(open('all_functions_merged.json', encoding='utf-8'))
 
     src = build_class_src(partb)
     open('/tmp/partB_verify2.py', 'w', encoding='utf-8').write(src)

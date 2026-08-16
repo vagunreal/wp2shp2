@@ -313,7 +313,7 @@ def main():
     store = json.load(open('all_functions_merged.json', encoding='utf-8'))
     # 新采集记录优先（含真元组常量）
     try:
-        new = json.load(open('/mnt/c/Users/xsh/AppData/Local/Temp/pyarmor_dump/all_functions_c.json', encoding='utf-8'))
+        new = json.load(open(os.environ.get('W2S_NEW_CAPTURE') or 'all_functions_c.json', encoding='utf-8'))
         for k, v in new.items():
             if v.get('code_hex'):
                 store[k] = v

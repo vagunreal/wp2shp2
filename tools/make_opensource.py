@@ -8,10 +8,12 @@
 """
 import os, re, shutil, sys
 
-sys.path.insert(0, '/zocde/wp2shp2_work')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import assemble
 
-ROOT = '/zocde/wp2shp2_work/opensource'
+_TOOLS = os.path.dirname(os.path.abspath(__file__))
+# 输出到工作区根下的 opensource/（相对路径，不绑定本机目录）
+ROOT = os.path.join(os.path.dirname(_TOOLS) if os.path.basename(_TOOLS) == 'tools' else _TOOLS, 'opensource')
 
 def patch_wp2shp2(text):
     # 1) windll 兼容
@@ -61,7 +63,7 @@ def main():
     print('  wp2shp2.py   %d 行' % len(w2s.splitlines()))
     # 附属文件同步（构建脚本/示例）
     for f in ('build_opensource_exe.py',):
-        src = os.path.join('/zocde/wp2shp2_work', f)
+        src = os.path.join(os.path.dirname(ROOT), f)
         if os.path.exists(src):
             shutil.copy(src, os.path.join(ROOT, f))
             print('  同步 %s' % f)

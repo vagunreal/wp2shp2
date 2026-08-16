@@ -2,7 +2,11 @@
 """组装最终源码：骨架 + partA/partB/partC → pymapgis.py / wp2shp2.py"""
 import re, sys
 
-RECON = '/zocde/wp2shp2_work/recon/'
+import os
+# 还原工作区根目录：脚本在上层（tools/）或当前目录，recon/ 相对工作区根
+_HERE = os.path.dirname(os.path.abspath(__file__))
+WS_ROOT = os.path.dirname(_HERE) if os.path.basename(_HERE) == 'tools' else _HERE
+RECON = os.path.join(WS_ROOT, 'recon') + os.sep
 
 def read(p):
     return open(RECON + p, encoding='utf-8').read()

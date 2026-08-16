@@ -4,7 +4,7 @@
 """
 import struct, os, sys, zlib, marshal
 
-sys.path.insert(0, '/zocde/wp2shp2_work')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pyz_rebuild
 
 SRC, PMG_SRC, W2S_SRC, DST = sys.argv[1:5]
