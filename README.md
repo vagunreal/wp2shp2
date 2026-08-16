@@ -23,7 +23,17 @@
 
 ## 使用
 
-### 图形界面（GUI）
+### 下载预编译成果包（Windows）
+
+到 [Releases](https://github.com/vagunreal/wp2shp2/releases) 下载最新的
+`成果包.zip`，解压即可：
+
+- `wp2shp2.exe` —— 破解版图形界面，双击即用，无需安装任何环境
+- `wp2shp2_tui.bat` —— TUI 命令行启动器：把数据目录拖到 bat 上松开，
+  或命令行 `wp2shp2_tui.bat -i 输入目录 -o 输出目录`
+- 包内全部为**相对路径**，解压到任意位置都能直接使用
+
+### 图形界面（GUI，源码运行）
 
 ```bash
 pip install -r requirements.txt

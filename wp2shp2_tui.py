@@ -11,6 +11,12 @@
   python wp2shp2_tui.py --input ./数据 --output ./out --name-pattern "*.WL"
 """
 import argparse
+import sys as _sys
+if hasattr(_sys.stdout, 'reconfigure'):
+    try:
+        _sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
 import concurrent.futures
 import logging
 import os
