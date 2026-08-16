@@ -1,0 +1,10 @@
+# 运行依赖（解析引擎）
+geopandas>=0.14
+shapely>=2.0
+pyproj>=3.6
+pandas>=2.0
+numpy>=1.26
+
+# 以下为发行版捆绑的可选组件（rasterio 栈，供 GeoJSON/FileGDB 之外的栅格场景）
+# rasterio
+# fiona
